@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar
-      color="red"
+      color="orange"
       elevation="5"
       dense
       dark
@@ -14,6 +14,9 @@
         <v-text-field v-model="title" label="Название проекта?"></v-text-field>
       </v-col>
       <v-spacer></v-spacer>
+      <v-avatar color="white" size="30">
+        <span class="orange--text text-h6">{{ avatarName }}</span>
+      </v-avatar>
     </v-app-bar>
   </div>
 </template>
@@ -26,6 +29,11 @@ export default {
     return {
       title: '',
     };
+  },
+  computed: {
+    avatarName() {
+      return this.title.length ? this.title[0].toUpperCase() : 'K';
+    },
   },
 };
 </script>
