@@ -1,4 +1,8 @@
-# todo-app
+# todo-app-vue__from-KazanExpress - [Ссылка на ТЗ](https://github.com/KazanExpress/frontend-test-task) 
+
+```
+Случайно нашел ТЗ, решил реализовать и выучить новые фишки
+```
 
 ## Project setup
 ```
