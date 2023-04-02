@@ -1,6 +1,6 @@
 <template>
   <v-container class="pt-0">
-    <v-card class="mx-auto" max-width="600">
+    <v-card>
       <v-list>
         <todo-item
           v-for="(item, id) in items"

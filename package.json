@@ -7,7 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@doist/todoist-api-typescript": "^2.1.2",
     "core-js": "^3.8.3",
+    "uuid": "^9.0.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuetify": "^2.6.0",

@@ -2,14 +2,42 @@
     <v-form >
       <v-container class="pt-0 pb-0">
         <v-row>
-          <v-col cols="12" md="9" class="pr-0 pt-0 pb-0">
+          <v-col cols="12" md="7" class="pr-0 pt-0 pb-0">
             <v-text-field
               label="Добавить"
               solo
             ></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="3" class="pt-0 pb-0">
+          <v-col cols="12" md="3" class="pr-0 pt-0 pb-0">
+            <v-autocomplete 
+            v-model="value"
+            :items="items"
+            solo
+            label="Подзадача"
+          >
+          <template v-slot:selection="data">
+            
+                <v-chip
+                v-bind="data.item"
+                :input-value="data.selected"
+                  close
+                  @click:close="removeItemSelect(data.item)"
+                >
+                <v-icon>
+                    {{data.item.action}}
+                </v-icon>
+                </v-chip>
+
+              </template>
+              <template v-slot:item="data">
+                  <v-icon>
+                    {{data.item.action}}
+                  </v-icon>
+              </template></v-autocomplete>
+          </v-col>
+
+          <v-col cols="12" md="2" class="pt-0 pb-0">
             <v-autocomplete 
             v-model="value"
             :items="items"

@@ -1,12 +1,14 @@
 <template>
-  <v-card color="orange accent-1" class="mx-auto" max-width="600">
-    <v-card-title class="orange accent-1 white--text">
-      <span class="text-h6">Что нового?</span>
-    </v-card-title>
-    <todo-form-add />
+  <v-container class="pb-0">
+    <v-card color="orange accent-1">
+      <v-card-title class="orange accent-1 white--text">
+        <span class="text-h6">Что нового?</span>
+      </v-card-title>
+      <todo-form-add />
 
-    <todo-form-filter />
-  </v-card>
+      <todo-form-filter />
+    </v-card>
+  </v-container>
 </template>
 
 <script>
