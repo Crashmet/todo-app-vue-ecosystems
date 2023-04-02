@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar
-      color="orange"
+      color="orange accent-2"
       elevation="5"
       dense
       dark

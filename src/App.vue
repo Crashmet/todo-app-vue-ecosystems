@@ -35,43 +35,28 @@ export default {
       items: [
         {
           action: 'mdi-ticket',
-          items: [{ title: 'List Item' }],
+          childs: [
+            {
+              childs: [],
+              title: 'Suzuki',
+            },
+          ],
           title: 'Attractions',
         },
         {
           action: 'mdi-silverware-fork-knife',
-          active: true,
-          items: [
-            { title: 'Breakfast & brunch' },
-            { title: 'New American' },
-            { title: 'Sushi' },
+          childs: [
+            {
+              childs: [],
+              title: 'Suzuki',
+            },
           ],
           title: 'Dining',
         },
         {
-          action: 'mdi-school',
-          items: [{ title: 'List Item' }],
-          title: 'Education',
-        },
-        {
-          action: 'mdi-human-male-female-child',
-          items: [{ title: 'List Item' }],
-          title: 'Family',
-        },
-        {
-          action: 'mdi-bottle-tonic-plus',
-          items: [{ title: 'List Item' }],
-          title: 'Health',
-        },
-        {
-          action: 'mdi-briefcase',
-          items: [{ title: 'List Item' }],
-          title: 'Office',
-        },
-        {
-          action: 'mdi-tag',
-          items: [{ title: 'List Item' }],
-          title: 'Promotions',
+          action: 'mdi-ticket',
+          childs: [],
+          title: 'Suzuki',
         },
       ],
     };

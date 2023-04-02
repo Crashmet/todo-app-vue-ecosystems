@@ -10,7 +10,7 @@
           </v-col>
 
           <v-col cols="12" md="3" class="pt-0 pb-0">
-            <v-autocomplete
+            <v-autocomplete 
             v-model="value"
             :items="items"
             solo
@@ -31,12 +31,9 @@
 
               </template>
               <template v-slot:item="data">
-                <template>
                   <v-icon>
                     {{data.item.action}}
                   </v-icon>
-                  
-                </template>
               </template></v-autocomplete>
           </v-col>
         </v-row>
@@ -81,6 +78,10 @@ export default {
         {
           action: 'mdi-tag',
         },
+        {
+          action: 'mdi-home',
+        },
+        
       ],
     };
   },
@@ -102,4 +103,10 @@ export default {
 .v-autocomplete.v-select.v-input--is-focused input {
     min-width: 0;
 }
+
+ .menuable__content__active{
+  max-height: 100% !important;
+}
+
+
 </style>
