@@ -1,6 +1,5 @@
 <template>
-  <v-container>
-    <todo-form />
+  <v-container class="pt-0">
     <v-card class="mx-auto" max-width="600">
       <v-list>
         <v-list-group
@@ -28,11 +27,9 @@
 </template>
 
 <script>
-import TodoForm from './TodoForm.vue';
-
 export default {
   name: 'TodoList',
-  components: { TodoForm },
+  components: {},
   props: {
     items: Array,
   },
