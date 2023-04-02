@@ -1,13 +1,24 @@
 <template>
-  <div>
+  <v-list-item-group v-model="selected" active-class="primary--text" multiple>
     <v-list-item :style="indent">
-      <v-icon dense class="mr-4">{{ item.action || 'mdi-minus' }}</v-icon>
+      <template v-slot:default="{ active }">
+        <v-icon dense class="mr-4">{{ item.action || 'mdi-minus' }}</v-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
 
-      <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-subtitle class="text--primary"></v-list-item-subtitle>
+        </v-list-item-content>
 
-      <v-btn color="red" dark>
-        <v-icon dark small> mdi-cancel </v-icon>
-      </v-btn>
+        <v-list-item-action class="mr-3">
+          <v-icon v-if="!active" color="grey lighten-1">
+            mdi-star-outline
+          </v-icon>
+
+          <v-icon v-else color="yellow darken-3"> mdi-star </v-icon>
+        </v-list-item-action>
+
+        <v-icon color="red lighten-2"> mdi-cancel </v-icon>
+      </template>
     </v-list-item>
     <todo-item
       v-for="(item, id) in item.childs"
@@ -15,7 +26,7 @@
       :item="item"
       :depth="depth + 1"
     />
-  </div>
+  </v-list-item-group>
 </template>
 
 <script>
@@ -30,6 +41,11 @@ export default {
     depth: {
       type: Number,
     },
+  },
+  data() {
+    return {
+      selected: [],
+    };
   },
   computed: {
     indent() {

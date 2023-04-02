@@ -37,7 +37,18 @@ export default {
           action: 'mdi-ticket',
           childs: [
             {
-              childs: [],
+              childs: [
+                {
+                  action: 'mdi-silverware-fork-knife',
+                  childs: [
+                    {
+                      childs: [],
+                      title: 'Suzuki',
+                    },
+                  ],
+                  title: 'Dining',
+                },
+              ],
               title: 'Suzuki',
             },
           ],
