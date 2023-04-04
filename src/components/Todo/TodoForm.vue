@@ -4,7 +4,7 @@
       <v-card-title class="orange accent-1 white--text">
         <span class="text-h6">Что нового?</span>
       </v-card-title>
-      <todo-form-add />
+      <todo-form-add @handlerAddNewTask="handlerAddNewTask" />
 
       <todo-form-filter />
     </v-card>
@@ -20,6 +20,11 @@ export default {
   components: {
     TodoFormAdd,
     TodoFormFilter,
+  },
+  methods: {
+    handlerAddNewTask(item) {
+      this.$emit('handlerAddNewTask', item);
+    },
   },
 };
 </script>

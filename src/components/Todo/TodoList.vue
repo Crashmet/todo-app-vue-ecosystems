@@ -3,7 +3,7 @@
     <v-card>
       <v-list>
         <todo-item
-          v-for="(item, id) in items"
+          v-for="(item, id) in todoList"
           :key="id"
           :item="item"
           :depth="0"
@@ -14,18 +14,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import TodoItem from './TodoItem.vue';
+
 export default {
   name: 'TodoList',
   components: { TodoItem },
-  props: {
-    items: Array,
-  },
   data() {
     return {};
   },
-
-  methods: {},
+  computed: {
+    ...mapGetters('todoList', ['todoList']),
+  },
 };
 </script>
 

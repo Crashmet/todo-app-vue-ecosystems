@@ -2,7 +2,7 @@
   <v-list-item-group v-model="selected" active-class="primary--text" multiple>
     <v-list-item :style="indent">
       <template v-slot:default="{ active }">
-        <v-icon dense class="mr-4">{{ item.action || 'mdi-minus' }}</v-icon>
+        <v-icon dense class="mr-4">{{ item.icon || 'mdi-minus' }}</v-icon>
         <v-list-item-content>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
 

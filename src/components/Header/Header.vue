@@ -9,7 +9,6 @@
       scroll-target="#scrolling-techniques-7"
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
       <v-col cols="12" md="4">
         <v-text-field v-model="title" label="Название проекта?"></v-text-field>
       </v-col>
@@ -33,6 +32,12 @@ export default {
   computed: {
     avatarName() {
       return this.title.length ? this.title[0].toUpperCase() : 'K';
+    },
+  },
+
+  watch: {
+    title() {
+      this.$emit('setTitleTodo', this.title);
     },
   },
 };

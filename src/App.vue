@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <Header class="mb-4" />
+    <Header class="mb-4" @setTitleTodo="setTitleTodo" />
 
     <v-main>
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
-        <todo-form />
-        <todo-list :items="items" />
+        <todo-form @handlerAddNewTask="handlerAddNewTask" />
+        <todo-list />
       </v-container>
     </v-main>
 
@@ -18,6 +18,9 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
+import { mapGetters, mapActions } from 'vuex';
+
 import Header from '@/components/Header/Header.vue';
 import TodoList from '@/components/Todo/TodoList.vue';
 import TodoForm from '@/components/Todo/TodoForm.vue';
@@ -32,49 +35,33 @@ export default {
 
   data() {
     return {
-      items: [
-        {
-          action: 'mdi-ticket',
-          childs: [
-            {
-              childs: [
-                {
-                  action: 'mdi-silverware-fork-knife',
-                  childs: [
-                    {
-                      childs: [],
-                      title: 'Suzuki',
-                    },
-                  ],
-                  title: 'Dining',
-                },
-              ],
-              title: 'Suzuki',
-            },
-          ],
-          title: 'Attractions',
-        },
-        {
-          action: 'mdi-silverware-fork-knife',
-          childs: [
-            {
-              childs: [],
-              title: 'Suzuki',
-            },
-          ],
-          title: 'Dining',
-        },
-        {
-          action: 'mdi-ticket',
-          childs: [],
-          title: 'Suzuki',
-        },
-      ],
+      titleTodo: '',
     };
   },
 
   created() {},
 
-  methods: {},
+  methods: {
+    ...mapActions('todoList', ['addNewTask']),
+
+    setTitleTodo(title) {
+      this.titleTodo = title;
+    },
+
+    handlerAddNewTask(item) {
+      const { icon, title } = item;
+      const task = {
+        id: uuidv4(),
+        icon,
+        title,
+        listName: this.titleTodo,
+        isComplited: false,
+        parent: null,
+        childs: [],
+      };
+
+      this.addNewTask(task);
+    },
+  },
 };
 </script>

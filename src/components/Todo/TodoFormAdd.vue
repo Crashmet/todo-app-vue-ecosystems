@@ -1,18 +1,19 @@
 <template>
-    <v-form >
+    <v-form @submit.prevent="handlerAddNewTask">
       <v-container class="pt-0 pb-0">
         <v-row>
-          <v-col cols="12" md="7" class="pr-0 pt-0 pb-0">
+          <v-col cols="12" md="7" class="pr-0 pt-1 pb-0">
             <v-text-field
               label="Добавить"
               solo
+              v-model="title"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="12" md="3" class="pr-0 pt-0 pb-0">
+          <!-- <v-col cols="12" md="3" class="pr-0 pt-1 pb-0">
             <v-autocomplete 
             v-model="value"
-            :items="items"
+            :items="//"
             solo
             label="Подзадача"
           >
@@ -35,17 +36,17 @@
                     {{data.item.action}}
                   </v-icon>
               </template></v-autocomplete>
-          </v-col>
+          </v-col> -->
+          
 
-          <v-col cols="12" md="2" class="pt-0 pb-0">
+          <v-col cols="12" md="2" class="pt-1 pb-0">
             <v-autocomplete 
-            v-model="value"
-            :items="items"
+            v-model="icon"
+            :items="icons"
             solo
             label="Icons ?"
           >
           <template v-slot:selection="data">
-            
                 <v-chip
                 v-bind="data.item"
                 :input-value="data.selected"
@@ -58,12 +59,20 @@
                 </v-chip>
 
               </template>
-              <template v-slot:item="data">
-                  <v-icon>
+              <template v-slot:item="data" >
+              
+                <v-icon>
                     {{data.item.action}}
-                  </v-icon>
+                </v-icon>
               </template></v-autocomplete>
           </v-col>
+          <v-col cols="12" md="1" class="pt-0 pb-0">
+            <v-btn type="submit" class="mb-2" fab dark color="teal" > 
+              <v-icon>
+                  {{'mdi-plus'}}
+              </v-icon></v-btn>
+          </v-col>
+         
         </v-row>
       </v-container>
     </v-form>
@@ -77,45 +86,57 @@ export default {
 
   data() {
     return {
-      value: null,
-      
-      items: [
-        {
-          action: 'mdi-ticket',
-         
-        },
-        {
-          action: 'mdi-silverware-fork-knife',
-         
-        },
-        {
-          action: 'mdi-school',
-         
-        },
-        {
-          action: 'mdi-human-male-female-child',
-         
-        },
-        {
-          action: 'mdi-bottle-tonic-plus',
-         
-        },
-        {
-          action: 'mdi-briefcase',
-        },
-        {
-          action: 'mdi-tag',
-        },
-        {
-          action: 'mdi-home',
-        },
-        
+      icon: null,
+      title: '',
+
+      icons: [
+      {
+        action: 'mdi-ticket',
+      },
+      {
+        action: 'mdi-silverware-fork-knife',
+      },
+      {
+        action: 'mdi-school',
+      },
+      {
+        action: 'mdi-human-male-female-child',
+      },
+      {
+        action: 'mdi-bottle-tonic-plus',
+      },
+      {
+        action: 'mdi-briefcase',
+      },
+      {
+        action: 'mdi-tag',
+      },
+      {
+        action: 'mdi-home',
+      },
       ],
+      
     };
   },
+
   methods: {
+    resetForm() {
+      
+    },
+    
+    handlerAddNewTask() {
+      const icon = this.icon ? this.icon.action : null
+
+      const dataTask = {
+        icon,
+        title: this.title,
+      };
+
+      this.$emit('handlerAddNewTask', dataTask);
+    },
+
     removeItemSelect(item) {
-      this.value = null
+      this.icon = null;
     },
   },
   
