@@ -2,30 +2,14 @@ export default {
   namespaced: true,
   state: {
     icons: [
-      {
-        action: 'mdi-ticket',
-      },
-      {
-        action: 'mdi-silverware-fork-knife',
-      },
-      {
-        action: 'mdi-school',
-      },
-      {
-        action: 'mdi-human-male-female-child',
-      },
-      {
-        action: 'mdi-bottle-tonic-plus',
-      },
-      {
-        action: 'mdi-briefcase',
-      },
-      {
-        action: 'mdi-tag',
-      },
-      {
-        action: 'mdi-home',
-      },
+      'mdi-ticket',
+      'mdi-silverware-fork-knife',
+      'mdi-school',
+      'mdi-human-male-female-child',
+      'mdi-bottle-tonic-plus',
+      'mdi-briefcase',
+      'mdi-tag',
+      'mdi-home',
     ],
   },
   mutations: {},
