@@ -10,7 +10,10 @@
     >
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-col cols="12" md="4">
-        <v-text-field v-model="title" label="Название проекта?"></v-text-field>
+        <v-text-field
+          v-model.trim="title"
+          label="Название проекта?"
+        ></v-text-field>
       </v-col>
       <v-spacer></v-spacer>
       <v-avatar color="white" size="30">

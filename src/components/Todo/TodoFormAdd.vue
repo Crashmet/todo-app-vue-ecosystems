@@ -8,7 +8,7 @@
 
         <v-col cols="12" md="3" class="pt-1 pb-0">
           <v-select
-            v-model="parent"
+            v-model.trim="parent"
             :items="parentList"
             solo
             label="Подзадача ?"
