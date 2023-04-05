@@ -42,7 +42,7 @@ export default {
   created() {},
 
   methods: {
-    ...mapActions('todoList', ['addNewTask']),
+    ...mapActions('todoList', ['addNewTask', 'addChild']),
 
     setTitleTodo(title) {
       this.titleTodo = title;
@@ -50,6 +50,7 @@ export default {
 
     handlerAddNewTask(item) {
       const { title, icon, parent } = item;
+
       const task = {
         id: uuidv4(),
         icon,
@@ -59,6 +60,11 @@ export default {
         parent: parent,
         childs: [],
       };
+
+      if (parent !== null) {
+        this.addChild(task);
+        return;
+      }
 
       this.addNewTask(task);
     },

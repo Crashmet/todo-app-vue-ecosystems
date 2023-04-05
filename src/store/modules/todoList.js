@@ -20,6 +20,17 @@ export default {
       state.todoList.push(task);
       // Vue.set(state.todoList, task);
     },
+
+    ADD_CHILD({ todoList }, task) {
+      todoList.forEach(function foo(el) {
+        if (el.title === task.parent.title && el.id === task.parent.id) {
+          el.childs.push(task);
+          return;
+        } else if (el.childs.length > 0) {
+          el.childs.forEach(foo);
+        }
+      });
+    },
   },
   getters: {
     todoList: ({ todoList }) => todoList,
@@ -28,6 +39,10 @@ export default {
     addNewTask({ commit }, task) {
       console.log('VUEX', task);
       commit('ADD_NEW_TASK', task);
+    },
+
+    addChild({ commit }, task) {
+      commit('ADD_CHILD', task);
     },
   },
 };

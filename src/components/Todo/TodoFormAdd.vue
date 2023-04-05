@@ -9,7 +9,7 @@
         <v-col cols="12" md="3" class="pt-1 pb-0">
           <v-select
             v-model="parent"
-            :items="parentListName"
+            :items="parentList"
             solo
             label="Подзадача ?"
           >
@@ -19,12 +19,18 @@
                 close
                 @click:close="removeParentSelect(data.item)"
               >
-                <span> {{ data.item }}</span>
+                <v-icon>
+                  {{ data.item.icon }}
+                </v-icon>
+                <span> {{ data.item.title }}</span>
               </v-chip>
             </template>
             <template v-slot:item="data">
               <v-chip :input-value="data.selected">
-                <span> {{ data.item }}</span>
+                <v-icon>
+                  {{ data.item.icon }}
+                </v-icon>
+                <span> {{ data.item.title }}</span>
               </v-chip>
             </template></v-select
           >
