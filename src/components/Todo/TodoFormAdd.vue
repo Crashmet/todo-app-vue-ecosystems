@@ -2,37 +2,33 @@
   <v-form @submit.prevent="handlerAddNewTask">
     <v-container class="pt-0 pb-0">
       <v-row>
-        <v-col cols="12" md="7" class="pt-1 pb-0">
+        <v-col cols="12" md="6" class="pt-1 pb-0">
           <v-text-field label="Добавить" solo v-model="title"></v-text-field>
         </v-col>
 
-        <!-- <v-col cols="12" md="3" class="pr-0 pt-1 pb-0">
-            <v-autocomplete 
-            v-model="value"
-            :items="//"
+        <v-col cols="12" md="3" class="pt-1 pb-0">
+          <v-select
+            v-model="parent"
+            :items="parentListName"
             solo
-            label="Подзадача"
+            label="Подзадача ?"
           >
-          <template v-slot:selection="data">
-            
-                <v-chip
-                v-bind="data.item"
+            <template v-slot:selection="data">
+              <v-chip
                 :input-value="data.selected"
-                  close
-                  @click:close="removeItemSelect(data.item)"
-                >
-                <v-icon>
-                    {{data.item.action}}
-                </v-icon>
-                </v-chip>
-
-              </template>
-              <template v-slot:item="data">
-                  <v-icon>
-                    {{data.item.action}}
-                  </v-icon>
-              </template></v-autocomplete>
-          </v-col> -->
+                close
+                @click:close="removeParentSelect(data.item)"
+              >
+                <span> {{ data.item }}</span>
+              </v-chip>
+            </template>
+            <template v-slot:item="data">
+              <v-chip :input-value="data.selected">
+                <span> {{ data.item }}</span>
+              </v-chip>
+            </template></v-select
+          >
+        </v-col>
 
         <v-col cols="12" md="2" class="pt-1 pb-0">
           <v-select v-model="icon" :items="icons" solo label="Icons ?">
@@ -40,7 +36,7 @@
               <v-chip
                 :input-value="data.selected"
                 close
-                @click:close="removeItemSelect(data.item)"
+                @click:close="removeIconSelect(data.item)"
               >
                 <v-icon>
                   {{ data.item }}
@@ -75,31 +71,86 @@ export default {
 
   data() {
     return {
-      icon: null,
       title: '',
+      parent: null,
+      icon: null,
+
+      parentList: [],
     };
+  },
+
+  created() {
+    this.getAllTasks(this.todoList);
   },
 
   computed: {
     ...mapGetters('icons', ['icons']),
+    ...mapGetters('todoList', ['todoList']),
+
+    parentListName() {
+      return this.parentList.reduce((acc, el) => {
+        acc.push(el.title);
+        return acc;
+      }, []);
+    },
   },
 
   methods: {
-    resetForm() {},
+    resetForm() {
+      this.title = '';
+      this.parent = null;
+      this.icon = null;
+
+      this.getAllTasks(this.todoList);
+    },
+
+    getAllTasks(tasks) {
+      this.parentList = [];
+
+      this.setAllTask(tasks);
+    },
+
+    setAllTask(tasks) {
+      tasks.map((el) => {
+        if (el.childs.length > 0) {
+          this.setAllTask(el.childs);
+        }
+        return this.parentList.push({
+          title: el.title,
+          icon: el.icon,
+          id: el.id,
+        });
+      });
+    },
+
+    addItemParentList(item) {
+      if (!item.childs.length) {
+        return this.parentList.push(item.title);
+      } else {
+        createParentList(item.childs);
+      }
+    },
 
     handlerAddNewTask() {
-      const icon = this.icon ? this.icon.action : null;
-
+      const icon = this.icon ? this.icon : null;
+      const parent = this.parent ? this.parent : null;
       const dataTask = {
-        icon,
         title: this.title,
+        icon,
+        parent,
       };
 
       this.$emit('handlerAddNewTask', dataTask);
+
+      this.resetForm();
     },
 
-    removeItemSelect(item) {
+    removeIconSelect() {
       this.icon = null;
+    },
+
+    removeParentSelect() {
+      this.parent = null;
     },
   },
 };

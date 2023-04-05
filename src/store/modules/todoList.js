@@ -26,7 +26,7 @@ export default {
   },
   actions: {
     addNewTask({ commit }, task) {
-      console.log(task);
+      console.log('VUEX', task);
       commit('ADD_NEW_TASK', task);
     },
   },

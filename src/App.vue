@@ -49,14 +49,14 @@ export default {
     },
 
     handlerAddNewTask(item) {
-      const { icon, title } = item;
+      const { title, icon, parent } = item;
       const task = {
         id: uuidv4(),
         icon,
         title,
         listName: this.titleTodo,
         isComplited: false,
-        parent: null,
+        parent: parent,
         childs: [],
       };
 
