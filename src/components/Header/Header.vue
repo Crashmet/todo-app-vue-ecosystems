@@ -1,17 +1,15 @@
 <template>
   <div>
     <v-app-bar
-      color="orange accent-2"
-      elevation="5"
+      color="orange accent-1"
       dense
-      dark
       elevate-on-scroll
       scroll-target="#scrolling-techniques-7"
     >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon dark></v-app-bar-nav-icon>
       <v-col cols="12" md="4">
         <v-text-field
-          v-model.trim="title"
+          v-model.trim.lazy="title"
           label="Название проекта?"
         ></v-text-field>
       </v-col>

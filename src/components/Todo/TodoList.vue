@@ -2,12 +2,20 @@
   <v-container class="pt-0">
     <v-card>
       <v-list>
-        <todo-item
-          v-for="(item, id) in todoList"
-          :key="id"
-          :item="item"
-          :depth="0"
-        />
+        <template v-if="todoList.length > 0">
+          <todo-item
+            v-for="(item, id) in todoList"
+            :key="id"
+            :item="item"
+            :depth="0"
+          />
+        </template>
+        <template v-else>
+          <v-card-title class="accent-1">
+            <strong class="subheading">Список пуст</strong>
+          </v-card-title>
+          <v-divider></v-divider>
+        </template>
       </v-list>
     </v-card>
   </v-container>

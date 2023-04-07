@@ -1,20 +1,20 @@
 <template>
-  <v-app>
-    <Header class="mb-4" @setTitleTodo="setTitleTodo" />
+  <div>
+    <v-app>
+      <Header class="mb-4" @setTitleTodo="setTitleTodo" />
 
-    <v-main>
-      <v-container fluid>
-        <!-- If using vue-router -->
-        <router-view></router-view>
-        <todo-form @handlerAddNewTask="handlerAddNewTask" />
-        <todo-list />
-      </v-container>
-    </v-main>
+      <v-main>
+        <v-container fluid>
+          <!-- If using vue-router -->
+          <router-view></router-view>
+          <todo-form @handlerAddNewTask="handlerAddNewTask" />
+          <todo-list />
+        </v-container>
+      </v-main>
 
-    <v-footer app>
-      <!-- -->
-    </v-footer>
-  </v-app>
+      <Footer />
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ import { mapGetters, mapActions } from 'vuex';
 import Header from '@/components/Header/Header.vue';
 import TodoList from '@/components/Todo/TodoList.vue';
 import TodoForm from '@/components/Todo/TodoForm.vue';
+import Footer from './components/Footer/Footer.vue';
 
 export default {
   name: 'App',
@@ -31,6 +32,7 @@ export default {
     Header,
     TodoForm,
     TodoList,
+    Footer,
   },
 
   data() {
@@ -42,10 +44,12 @@ export default {
   created() {},
 
   methods: {
-    ...mapActions('todoList', ['addNewTask', 'addChild']),
+    ...mapActions('todoList', ['addNewTask', 'addChild', 'renameListName']),
 
     setTitleTodo(title) {
       this.titleTodo = title;
+
+      this.renameListName(title);
     },
 
     handlerAddNewTask(item) {

@@ -16,8 +16,9 @@
 
           <v-icon v-else color="yellow darken-3"> mdi-star </v-icon>
         </v-list-item-action>
-
-        <v-icon color="red lighten-2"> mdi-cancel </v-icon>
+        <v-icon color="red lighten-2" @click.stop="hedlerDeleteTask">
+          mdi-cancel
+        </v-icon>
       </template>
     </v-list-item>
     <todo-item
@@ -57,7 +58,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('todoList', ['setComplitedStatus']),
+    ...mapActions('todoList', ['setComplitedStatus', 'deleteTask']),
 
     handlerAddComplite() {
       this.isComplited = !this.isComplited;
@@ -66,6 +67,10 @@ export default {
         isComplited: this.isComplited,
         item: this.item,
       });
+    },
+
+    hedlerDeleteTask() {
+      this.deleteTask(this.item);
     },
   },
 };

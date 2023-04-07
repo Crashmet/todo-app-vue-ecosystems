@@ -59,7 +59,7 @@
           >
         </v-col>
         <v-col cols="12" sm="6" md="1" class="pt-0 pb-0">
-          <v-btn type="submit" class="mb-2" fab dark color="teal">
+          <v-btn type="submit" class="mb-2" fab dark color="blue accent-1">
             <v-icon>
               {{ 'mdi-plus' }}
             </v-icon></v-btn

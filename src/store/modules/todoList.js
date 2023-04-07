@@ -41,6 +41,38 @@ export default {
         }
       });
     },
+
+    DELETE_TASK({ todoList }, task) {
+      let idX = null;
+
+      todoList.forEach(function foo(el, id) {
+        if (el.title === task.title && el.id === task.id) {
+          return (idX = id);
+        } else if (el.childs.length > 0) {
+          el.childs.map(foo);
+
+          if (idX !== null) {
+            el.childs.splice(idX, 1);
+            idX = null;
+          }
+        }
+      });
+
+      if (idX !== null) {
+        todoList.splice(idX, 1);
+      }
+    },
+
+    RENAME_LIST_NAME({ todoList }, listName) {
+      todoList.forEach(function foo(el) {
+        el.listName = listName;
+
+        if (el.childs.length > 0) {
+          el.childs.forEach(foo);
+        }
+      });
+      console.log(todoList);
+    },
   },
   getters: {
     todoList: ({ todoList }) => todoList,
@@ -57,6 +89,14 @@ export default {
 
     setComplitedStatus({ commit }, complitedItem) {
       commit('SET_STATUS', complitedItem);
+    },
+
+    deleteTask({ commit }, task) {
+      commit('DELETE_TASK', task);
+    },
+
+    renameListName({ commit }, listName) {
+      commit('RENAME_LIST_NAME', listName);
     },
   },
 };
