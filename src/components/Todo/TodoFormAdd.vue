@@ -2,11 +2,11 @@
   <v-form @submit.prevent="handlerAddNewTask">
     <v-container class="pt-0 pb-0">
       <v-row>
-        <v-col cols="12" md="6" class="pt-1 pb-0">
+        <v-col cols="12" sm="6" md="6" class="pt-1 pb-0">
           <v-text-field label="Добавить" solo v-model="title"></v-text-field>
         </v-col>
 
-        <v-col cols="12" md="3" class="pt-1 pb-0">
+        <v-col cols="12" sm="6" md="3" class="pt-1 pb-0">
           <v-select
             v-model.trim="parent"
             :items="parentList"
@@ -36,7 +36,7 @@
           >
         </v-col>
 
-        <v-col cols="12" md="2" class="pt-1 pb-0">
+        <v-col cols="12" sm="6" md="2" class="pt-1 pb-0">
           <v-select v-model="icon" :items="icons" solo label="Icons ?">
             <template v-slot:selection="data">
               <v-chip
@@ -58,7 +58,7 @@
             </template></v-select
           >
         </v-col>
-        <v-col cols="12" md="1" class="pt-0 pb-0">
+        <v-col cols="12" sm="6" md="1" class="pt-0 pb-0">
           <v-btn type="submit" class="mb-2" fab dark color="teal">
             <v-icon>
               {{ 'mdi-plus' }}

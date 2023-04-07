@@ -16,8 +16,8 @@ export default {
     ],
   },
   mutations: {
-    ADD_NEW_TASK(state, task) {
-      state.todoList.push(task);
+    ADD_NEW_TASK({ todoList }, task) {
+      todoList.push(task);
       // Vue.set(state.todoList, task);
     },
 
@@ -26,6 +26,16 @@ export default {
         if (el.title === task.parent.title && el.id === task.parent.id) {
           el.childs.push(task);
           return;
+        } else if (el.childs.length > 0) {
+          el.childs.forEach(foo);
+        }
+      });
+    },
+
+    SET_STATUS({ todoList }, { isComplited, item }) {
+      todoList.forEach(function foo(el) {
+        if (el.title === item.title && el.id === item.id) {
+          return (el.isComplited = isComplited);
         } else if (el.childs.length > 0) {
           el.childs.forEach(foo);
         }
@@ -43,6 +53,10 @@ export default {
 
     addChild({ commit }, task) {
       commit('ADD_CHILD', task);
+    },
+
+    setComplitedStatus({ commit }, complitedItem) {
+      commit('SET_STATUS', complitedItem);
     },
   },
 };

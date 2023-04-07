@@ -1,6 +1,6 @@
 <template>
   <v-list-item-group v-model="selected" active-class="primary--text" multiple>
-    <v-list-item :style="indent">
+    <v-list-item :style="indent" @click="handlerAddComplite">
       <template v-slot:default="{ active }">
         <v-icon dense class="mr-4">{{ item.icon || 'mdi-minus' }}</v-icon>
         <v-list-item-content>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'TodoItem',
   components: {},
@@ -45,11 +47,25 @@ export default {
   data() {
     return {
       selected: [],
+
+      isComplited: false,
     };
   },
   computed: {
     indent() {
       return { 'padding-left': `${this.depth * 40 + 16}px` };
+    },
+  },
+  methods: {
+    ...mapActions('todoList', ['setComplitedStatus']),
+
+    handlerAddComplite() {
+      this.isComplited = !this.isComplited;
+
+      this.setComplitedStatus({
+        isComplited: this.isComplited,
+        item: this.item,
+      });
     },
   },
 };
